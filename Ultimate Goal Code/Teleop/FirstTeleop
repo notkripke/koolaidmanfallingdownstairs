@@ -83,7 +83,7 @@ public class FirstTeleop extends GorillabotsCentral {
 
                     StopIntake();
 
-                    doIt = false
+                    doIt = false;
 
                     telemetry.addData("Transfer);
                     telemetry.update();
