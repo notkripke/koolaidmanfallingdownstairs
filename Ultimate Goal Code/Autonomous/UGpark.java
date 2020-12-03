@@ -12,7 +12,7 @@ public class UGpark extends GorillabotsCentral {
 
         waitForStart();
 
-        MoveUntilEncoderGYRO(5, 180, .3, 0);//distance (rotations[12.57"]),
+        MoveUntilEncoderGYRO(5, 90, .45, 0);//distance (rotations[12.57"]),
                                             // direction (degrees), power, gyroT(?)
         if(!opModeIsActive())
         {
