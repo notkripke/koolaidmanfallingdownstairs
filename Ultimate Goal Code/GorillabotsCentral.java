@@ -162,6 +162,15 @@ public abstract class GorillabotsCentral extends LinearOpMode {
 
     }
 
+    public void FireRing(){
+        Servo Feeder;
+        Feeder = hardwareMap.crservo.get("Feeder");
+        Feeder.setPosition(1);
+        sleep(300);
+        Feeder.setPosition(0);
+
+    }
+
     public void MoveUntilEncoder(double distance, double degree, double power) {
 
         drive.mfr.setDirection(DcMotor.Direction.REVERSE);
