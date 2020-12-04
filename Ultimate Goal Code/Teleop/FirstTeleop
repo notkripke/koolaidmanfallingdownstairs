@@ -30,6 +30,7 @@ public class FirstTeleop extends GorillabotsCentral {
         double x = 0;
         double y = 0;
         double r = 0;
+        int TotalRingsShot = 0;
 
         boolean doIt = false;
         boolean doItWatch = false;
@@ -50,6 +51,9 @@ public class FirstTeleop extends GorillabotsCentral {
             }
 
             telemetry.addData("Shooter Speed", "%5.2f", power);
+            telemetry.update();
+
+            telemetry.addData("Total Rings Shot:", TotalRingsShot);
             telemetry.update();
 
             ShooterMotor.setPower(ShootSpeed);
@@ -97,6 +101,7 @@ public class FirstTeleop extends GorillabotsCentral {
 
                     if(gamepad2.right_trigger > 0.6){
                         FireRing();
+                        TotalRingsShot += 1;
                     }
 
                     telemetry.addData("Shooting Phase");
