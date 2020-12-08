@@ -14,7 +14,7 @@ public class LatePark extends GorillabotsCentral {
 
         sleep(26000);//robot delays movement until 4 seconds left in auto
 
-        MoveUntilEncoderGYRO(5, 90, .45, 0);//distance (rotations[12.57"]),
+        MoveUntilEncoderGYRO(40, 0, .6, 0);//distance (rotations[12.57"]),
         // direction (degrees), power, gyroT(?)
         if(!opModeIsActive())
         {

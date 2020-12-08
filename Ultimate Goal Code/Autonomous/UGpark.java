@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Ultimate Goal Code.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import org.firstinspires.ftc.teamcode.GorillabotsCentral;
+import org.firstinspires.ftc.teamcode.Ultimate Goal Code.GorillabotsCentral;
 
 @Autonomous(group = "test", name = "UGpark")
 
@@ -12,8 +12,8 @@ public class UGpark extends GorillabotsCentral {
 
         waitForStart();
 
-        MoveUntilEncoderGYRO(5, 90, .45, 0);//distance (rotations[12.57"]),
-                                            // direction (degrees), power, gyroT(?)
+        MoveUntilEncoderGYRO(40, 0, .6, 0);//distance (rotations[12.57"]),
+                                           // direction (degrees), power, gyroT(?)
         if(!opModeIsActive())
         {
             return;
