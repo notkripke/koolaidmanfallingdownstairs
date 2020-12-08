@@ -50,7 +50,7 @@ public class FirstTeleop extends GorillabotsCentral {
                 ShootSpeed = MAX_FWD;
             }
 
-            telemetry.addData("Shooter Speed", "%5.2f", ShootSpeed);
+            telemetry.addData("Shooter Speed", "%5.2f", power);
             telemetry.update();
 
             telemetry.addData("Total Rings Shot:", TotalRingsShot);
@@ -66,6 +66,14 @@ public class FirstTeleop extends GorillabotsCentral {
                 stage += 1;
             }
             doItWatch = gamepad1.right_bumper;
+
+            if(gamepad1.dpad_left){
+                AllignLeft();
+            }
+
+            if(gamepad1.dpad_right){
+                AllignRight();
+            }
 
             switch (stage) {//BULK OF PROGRAM↓↓
 
