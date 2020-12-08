@@ -68,11 +68,11 @@ public class FirstTeleop extends GorillabotsCentral {
             doItWatch = gamepad1.right_bumper;
 
             if(gamepad1.dpad_left){
-                AllignLeft();
+                AlignLeft();
             }
 
             if(gamepad1.dpad_right){
-                AllignRight();
+                AlignRight();
             }
 
             switch (stage) {//BULK OF PROGRAM↓↓
