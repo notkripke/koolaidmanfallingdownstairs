@@ -13,8 +13,12 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.teamcode.components.Alignment;
 import org.firstinspires.ftc.teamcode.components.AutoDrive;
+import org.firstinspires.ftc.teamcode.components.Capstone;
 import org.firstinspires.ftc.teamcode.components.CustomVision;
+import org.firstinspires.ftc.teamcode.components.Grabber;
+import org.firstinspires.ftc.teamcode.components.Hooks;
 import org.firstinspires.ftc.teamcode.components.MecanumDrive;
+import org.firstinspires.ftc.teamcode.components.Parker;
 import org.firstinspires.ftc.teamcode.components.RevGyro;
 import org.firstinspires.ftc.teamcode.components.Sensors;
 import org.firstinspires.ftc.teamcode.components.VuforiaKeyManager;
@@ -110,7 +114,7 @@ public abstract class GorillabotsCentral extends LinearOpMode {
 
         if (gamepad1.a || gamepad2.a){
             IntakeMotor.setPower(-IntakeSpeed);
-            telemetry.addData("Outtaking");
+            telemetry.addData("Intake Reversed");
             telemetry.update();
         }
         if (isIntakeSpinning){
@@ -125,6 +129,30 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         IntakeMotor = hardwareMap.dcMotor.get("IntakeMotor");
         IntakeMotor.setPower(0);
         telemetry.addData("Intake off");
+        telemetry.update();
+    }
+
+    public void AllignLeft(){
+        TurnAbsolute(0,.3, .8);
+        MoveUntilRangeLG(30,270,.7,0);
+        TurnAbsolute(20,.3,.8);
+        /* This section will eventually be used to have the robot drive forwards until
+        it senses the shooting line with a color sensor. The above absolute turn would
+        not be used until robot the correct distance away from the line
+         */
+        telemetry.addData("Allignment Complete");
+        telemetry.update();
+    }
+
+    public void AllignRight(){
+        TurnAbsolute(0,.3,.8);
+        MoveUntilRangeRG(30,90,.7,0);
+        TurnAbsolute(20,.3,.8);
+        /* This section will eventually be used to have the robot drive forwards until
+        it senses the shooting line with a color sensor. The above absolute turn would
+        not be used until robot the correct distance away from the line
+         */
+        telemetry.addData("Allignment Complete");
         telemetry.update();
     }
     public void StartShooter(){
@@ -555,7 +583,6 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         telemetry.update();
     }
 
-   
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
 
@@ -582,6 +609,7 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
     }
+
 
 
 }
