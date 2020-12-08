@@ -132,27 +132,20 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         telemetry.update();
     }
 
-    public void AllignLeft(){
+    public void AlignLeft(){
         TurnAbsolute(0,.3, .8);
         MoveUntilRangeLG(30,270,.7,0);
         TurnAbsolute(20,.3,.8);
-        /* This section will eventually be used to have the robot drive forwards until
-        it senses the shooting line with a color sensor. The above absolute turn would
-        not be used until robot the correct distance away from the line
-         */
-        telemetry.addData("Allignment Complete");
+        telemetry.addData("Alignment Complete");
         telemetry.update();
     }
 
-    public void AllignRight(){
+    public void AlignRight(){
         TurnAbsolute(0,.3,.8);
         MoveUntilRangeRG(30,90,.7,0);
         TurnAbsolute(20,.3,.8);
-        /* This section will eventually be used to have the robot drive forwards until
-        it senses the shooting line with a color sensor. The above absolute turn would
-        not be used until robot the correct distance away from the line
-         */
-        telemetry.addData("Allignment Complete");
+
+        telemetry.addData("Alignment Complete");
         telemetry.update();
     }
     public void StartShooter(){
