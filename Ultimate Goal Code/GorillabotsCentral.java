@@ -110,7 +110,7 @@ public abstract class GorillabotsCentral extends LinearOpMode {
 
         if (gamepad1.a || gamepad2.a){
             IntakeMotor.setPower(-IntakeSpeed);
-            telemetry.addData("Intake Reversed");
+            telemetry.addData("Outtaking");
             telemetry.update();
         }
         if (isIntakeSpinning){
