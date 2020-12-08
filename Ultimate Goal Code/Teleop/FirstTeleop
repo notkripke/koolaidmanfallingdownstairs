@@ -50,7 +50,7 @@ public class FirstTeleop extends GorillabotsCentral {
                 ShootSpeed = MAX_FWD;
             }
 
-            telemetry.addData("Shooter Speed", "%5.2f", power);
+            telemetry.addData("Shooter Speed", "%5.2f", ShootSpeed);
             telemetry.update();
 
             telemetry.addData("Total Rings Shot:", TotalRingsShot);
