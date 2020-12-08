@@ -559,44 +559,7 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         telemetry.update();
     }
 
-    public void setLiftPos(double pos) {
-        grabber.isEncoderModeLift(true);
-
-        int start = grabber.lift.getCurrentPosition();
-        int end = start + (int) pos;
-
-        grabber.lift(Grabber.LIFT_GOINUP);
-
-        grabber.lift.setTargetPosition(end);
-        timer.reset();
-        timer.startTime();
-        while (grabber.lift.isBusy() && opModeIsActive() && timer.seconds() < 3) {
-            telemetry.addData("pos", grabber.lift.getCurrentPosition());
-            telemetry.update();
-        }
-        grabber.lift(0);
-        grabber.isEncoderModeLift(false);
-    }
-
-    public void setLiftDown() {
-        grabber.isEncoderModeLift(false);
-
-        grabber.lift(Grabber.LIFT_GOINDOWN);
-
-        timer.reset();
-        timer.startTime();
-
-        while (opModeIsActive() && sensors.liftBot.getState() && timer.seconds() < 3) {
-
-        }
-        grabber.lift(0);
-
-    }
-
-    private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
-    private static final String LABEL_FIRST_ELEMENT = "Stone";
-    private static final String LABEL_SECOND_ELEMENT = "Skystone";
-
+   
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
 
@@ -623,27 +586,6 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
     }
-
-
-    public void setParkerPos(int pos) {
-        parker.setParkerEncoder(true);
-
-        int start = parker.parker.getCurrentPosition();
-        int end = start - pos;
-
-        parker.parkerPow(Parker.PARKER_OUT * 2);
-
-        parker.parker.setTargetPosition(end);
-        timer.reset();
-        timer.startTime();
-        while (parker.parker.isBusy() && opModeIsActive()) {
-            telemetry.addData("pos", parker.parker.getCurrentPosition());
-            telemetry.update();
-        }
-        parker.parkerPow(0);
-        parker.setParkerEncoder(false);
-    }
-
 
 
 }
