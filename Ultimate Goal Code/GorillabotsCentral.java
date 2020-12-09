@@ -136,6 +136,8 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         TurnAbsolute(0,.3, .8);
         MoveUntilRangeLG(30,270,.7,0);
         TurnAbsolute(20,.3,.8);
+        stopMotors();
+
         telemetry.addData("Alignment Complete");
         telemetry.update();
     }
@@ -144,6 +146,7 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         TurnAbsolute(0,.3,.8);
         MoveUntilRangeRG(30,90,.7,0);
         TurnAbsolute(20,.3,.8);
+        stopMotors();
 
         telemetry.addData("Alignment Complete");
         telemetry.update();
