@@ -191,6 +191,16 @@ public abstract class GorillabotsCentral extends LinearOpMode {
 
     }
 
+    public void SlowDrive(){
+        x = x * 0.25;
+        y = y * 0.25;
+        r = r * 0.25;
+            
+        telemetry.addData("Driving Slow");
+        telemetry.update();
+
+    }
+
     public void MoveUntilEncoder(double distance, double degree, double power) {
 
         drive.mfr.setDirection(DcMotor.Direction.REVERSE);
