@@ -61,6 +61,8 @@ public class FirstTeleop extends GorillabotsCentral {
                 sleep(CYCLE_MS);
             }
 
+            //if statement watches↓↓
+
             if (gamepad1.right_bumper && !doItWatch) { //Advances case
                 doIt = !doIt;
                 stage += 1;
@@ -73,6 +75,10 @@ public class FirstTeleop extends GorillabotsCentral {
 
             if(gamepad1.dpad_right){
                 AlignRight();
+            }
+
+            if (gamepad1.left_trigger > 0.5 && gamepad1.left_trigger > 0.5){
+                SlowDrive();
             }
 
             switch (stage) {//BULK OF PROGRAM↓↓
