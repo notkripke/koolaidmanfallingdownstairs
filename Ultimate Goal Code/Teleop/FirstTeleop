@@ -63,6 +63,10 @@ public class FirstTeleop extends GorillabotsCentral {
 
             //if statement watches↓↓
 
+            if (gamepad1.b && gamepad1.dpad_left || gamepad1.b && gamepad1.dpad_left){
+                distance = 0;
+            }
+
             if (gamepad1.right_bumper && !doItWatch) { //Advances case
                 doIt = !doIt;
                 stage += 1;
