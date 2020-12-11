@@ -1,0 +1,148 @@
+package org.firstinspires.ftc.teamcode.Teleop;
+
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.teamcode.GorillabotsCentral;
+
+
+@TeleOp(group = "AAAAAAAAAA", name = "FirstTeleop")
+public class FirstTeleop extends GorillabotsCentral {
+
+    @Override
+    public void runOpMode() {
+
+        initializeComponents();
+
+        waitForStart();
+
+        int stage = 0;
+
+        DcMotor ShooterMotor;
+        ShooterMotor = hardwareMap.dcMotor.get("ShooterMotor");
+
+        final double INCREMENT   = -0.01;     // Amount to ramp motor(Higher numbers = faster)↓↓
+        final int    CYCLE_MS    =   25;     // Change ammount of time per wait/cycle
+        final double MAX_FWD     =  -0.80;     // Maximum FWD power applied to motor
+        boolean DriveSlow = false;
+        double ShootSpeed = 0;
+        double x = 0;
+        double y = 0;
+        double r = 0;
+        int TotalRingsShot = 0;
+        int distance;
+        boolean doIt = false;
+        boolean doItWatch = false;
+
+        while (opModeIsActive()) {
+
+            // SET DRIVING STUFF ↓
+
+            x = gamepad1.left_stick_x;
+            y = -gamepad1.left_stick_y;
+            r = gamepad1.right_stick_x;
+
+            // ↓ SHOOTER STUFF ↓
+
+            ShootSpeed += INCREMENT;
+            if (ShootSpeed <= MAX_FWD) {
+                ShootSpeed = MAX_FWD;
+            }
+
+            telemetry.addData("Shooter Speed", "%5.2f", ShootSpeed);
+            telemetry.update();
+
+            telemetry.addData("Total Rings Shot:", TotalRingsShot);
+            telemetry.update();
+
+            ShooterMotor.setPower(ShootSpeed);
+            if (ShootSpeed <= MAX_FWD) {
+                sleep(CYCLE_MS);
+            }
+
+            //if statement watches↓↓
+
+            if (gamepad1.b && gamepad1.dpad_left || gamepad1.b && gamepad1.dpad_left){
+                distance = 0;
+            }
+
+            if (gamepad1.right_bumper && !doItWatch) { //Advances case
+                doIt = !doIt;
+                stage += 1;
+            }
+            doItWatch = gamepad1.right_bumper;
+
+            if(gamepad1.dpad_left){
+                AlignLeft();
+            }
+
+            if(gamepad1.dpad_right){
+                AlignRight();
+            }
+
+            if(gamepad1.left_stick_button){
+             DriveSlow = !DriveSlow;
+            }
+
+            if (DriveSlow = true){
+                x = x*0.25;
+                y = y*0.25;
+                r = r*0.25;
+
+                telemetry.addData("IsDriveSlow", DriveSlow);
+                telemetry.update();
+            }
+
+            switch (stage) {//BULK OF PROGRAM↓↓
+
+                case 0: // collection
+                    drive.go(x, y, r); // drive speed max
+
+                    StartIntake();
+
+                    doIt = false; // prep for next stage ↓
+
+                    telemetry.addData("Stage:","Collection");
+                    telemetry.update();
+
+                    break;
+
+                case 1: // Transfer
+
+                    drive.go(x, y, r);
+
+                    StopIntake();
+
+                    doIt = false;
+
+                    telemetry.addData("Stage:", "Transfer");
+                    telemetry.update();
+
+                    break;
+                case 2: // Aim + Shoot
+
+                    drive.go(x * 0.25, y * 0.25, r * 0.25); // 25% speed
+
+                    doIt = false;
+
+                    if(gamepad2.right_trigger > 0.6){
+                        FireRing();
+                        TotalRingsShot += 1;
+                    }
+
+                    telemetry.addData("Stage:", "Shooting");
+                    telemetry.update();
+
+                    break;
+                case 3: //for looping
+
+                    stage = 0;
+
+                    break;
+
+            }
+            telemetry.update();
+        }
+        stopMotors();
+    }
+}

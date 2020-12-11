@@ -1,0 +1,31 @@
+package org.firstinspires.ftc.teamcode.Autonomous;
+
+
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
+import org.firstinspires.ftc.teamcode.GorillabotsCentral;
+
+@Autonomous(group = "test", name = "LatePark")
+
+public class LatePark extends GorillabotsCentral {
+    public void runOpMode() {
+
+        waitForStart();
+
+        sleep(26000);//robot delays movement until 4 seconds left in auto
+
+        MoveUntilEncoderGYRO(40, 0, .6, 0);//distance (rotations[12.57"]),
+        // direction (degrees), power, gyroT(?)
+        if(!opModeIsActive())
+        {
+            return;
+        }
+
+        sleep(2000);//wait until end of auto (adjustment needed to get final time to 30 seconds)
+
+        return;
+    }
+
+}
