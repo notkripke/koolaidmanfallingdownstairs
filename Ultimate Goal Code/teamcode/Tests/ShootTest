@@ -31,8 +31,11 @@ public class ShootTest extends GorillabotsCentral {
             }
             telemetry.addData("Shooter Speed", "%5.2f", ShootSpeed);
 
-            if (ShootSpeed == 1) {
+            if (ShootSpeed == MAX_FWD) {
                 telemetry.addData("Firing Status:", "Ready");
+            }
+            else{
+                telemetry.addData("Firing Status", "Not ready");
             }
 
             telemetry.update();
